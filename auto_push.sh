@@ -1,10 +1,16 @@
 #!/bin/bash
 
-# 모든 변경 사항 추가
+# 현재 시간으로 커밋 메시지 생성
+now=$(date "+%Y-%m-%d %H:%M:%S")
+echo "🕒 커밋 시간: $now"
+
+# Git 저장소 위치로 이동
+cd ~/goldmind || { echo "📂 goldmind 폴더가 없습니다"; exit 1; }
+
+# Git 추가 및 커밋
+
 git add .
+git commit -m "$now"
 
-# 커밋 메시지 자동 생성 (날짜 및 시간 포함)
-git commit -m "🔄 자동 커밋: $(date '+%Y-%m-%d %H:%M:%S')"
-
-# 원격 저장소에 푸시
-git push origin main
+# GitHub 토큰 사용해 푸시 (👉 아래 ghp_토큰값 부분은 실제 토큰으로 대체)
+git push https://duksans:ghp_토큰값@github.com/Ducksans/goldmind.git main
